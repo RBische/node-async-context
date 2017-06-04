@@ -7,7 +7,7 @@
 
 # node-async-context (asyncctx)
 
-This module allows you to create a asynchronouse execution context for JavaScript or TypeScript
+This module allows you to create an asynchronouse execution context for JavaScript or TypeScript
 
 > NOTE: This module is based on [async-hook](https://github.com/AndreasMadsen/async-hook), which in turn is based 
 on the undocumented API [AsyncWrap](https://github.com/nodejs/diagnostics/blob/master/tracing/AsyncWrap/README.md)
@@ -60,6 +60,7 @@ process.nextTick(() => {
 
 | Release   | Notes                                                                                                                            |
 |-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| 0.0.07    | this version depends on async-hook@1.7.1 and AsyncWrap in node < 8.0                                                             |
 | 0.0.06    | maintenance releases                                                                                                             |
 | 0.0.05    | async-hook 1.7.1                                                                                                                 |
 | 0.0.01-04 | initial version                                                                                                                  |

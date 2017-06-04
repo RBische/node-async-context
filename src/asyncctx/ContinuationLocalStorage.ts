@@ -1,5 +1,13 @@
 // tslint:disable: no-null-keyword
-// tslint:disable-next-line: no-require-imports no-var-requires
+// tslint:disable: no-require-imports no-var-requires
+
+const semver = require('semver');
+console.log('Version: ' + process.version);
+const nodeVersion = process.versions.node;
+if (!semver.satisfies(nodeVersion, '<8.0.0')) {
+  throw new Error(`This version of 'asyncctx' depends on node < 8.0.0 but you are using ${nodeVersion}\n    Please install 'asyncctx@1.0.0' or higher`);
+}
+
 const asyncHook = require('async-hook');
 
 type initFunc = (uid: number, handle: any, provider: number, parentUid: number | null, parentHandle: any) => void;
