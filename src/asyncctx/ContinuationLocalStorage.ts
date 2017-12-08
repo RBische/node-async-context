@@ -35,6 +35,7 @@ interface HookInfo<T> {
   triggerHook?: HookInfo<T>;
   oriTriggerId?: number;
   activated: boolean;
+  creationDate: number;
   data?: T;
 }
 
@@ -90,7 +91,7 @@ export class ContinuationLocalStorage<T> {
           }
         }
 
-        this.idHookMap.set(id, {id, type, triggerId, oriTriggerId, triggerHook, activated: false});
+        this.idHookMap.set(id, {id, type, triggerId, oriTriggerId, triggerHook, activated: false, creationDate: Date.now()});
         // this.debugId('init', id);
       },
       before: (id) => {
@@ -232,6 +233,17 @@ export class ContinuationLocalStorage<T> {
     this.idHookMap.clear();
   }
 
+  /**
+   * clean all data older than x seconds
+   */
+  public clearOldData(before: number = 30): void {
+      for (let [key, value] of this.idHookMap) {
+          if (value.creationDate <= Date.now() - before * 1000) {
+              this.idHookMap.delete(key);
+          }
+      }
+  }
+
 
   /**
    * enable
@@ -251,7 +263,7 @@ export class ContinuationLocalStorage<T> {
 
   protected initMap(value?: T): void {
     this.idHookMap = new Map<number, HookInfo<T>>();
-    this.idHookMap.set(ROOT_ID, {id: ROOT_ID, type: 'C++', triggerId: 0, activated: true});
+    this.idHookMap.set(ROOT_ID, {id: ROOT_ID, type: 'C++', triggerId: 0, activated: true, creationDate: Date.now()});
     this._currId = ROOT_ID;
     if (value) {
       this.setRootContext(value);
