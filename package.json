@@ -1,6 +1,6 @@
 {
   "name": "asyncctx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "an asynchronous execution context for TypeScript/JavaScript",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -25,48 +25,17 @@
     "url": "https://github.com/gms1/node-async-context/issues"
   },
   "homepage": "https://github.com/gms1/node-async-context",
-  "scripts": {
-    "clean": "gulp clean",
-    "build": "gulp build",
-    "rebuild": "gulp rebuild",
-    "watch": "gulp watch",
-    "test": "gulp test",
-    "testwatch": "gulp watch --task=test",
-    "typedoc": "typedoc --options typedoc.json --out docs/typedoc/asyncctx --exclude '**/*.spec.ts' src/",
-    "prepublishOnly": "echo \"ERROR: please use the dist-folder for publishing\" && exit 1",
-    "release:build": "gulp clean && gulp build test --prod",
-    "release:publish": "npm run typedoc && cd dist && npm --access public publish"
-  },
   "dependencies": {
     "stack-chain": "^2.0.0",
     "semver": "^5.4.1"
-  },
-  "devDependencies": {
-    "@types/jasmine": "^2.8.2",
-    "@types/node": "^8.0.53",
-    "@types/reflect-metadata": "^0.0.5",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-batch": "^1.0.5",
-    "gulp-jasmine": "^2.4.2",
-    "gulp-json-transform": "^0.4.5",
-    "gulp-options": "^1.1.1",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-tslint": "^8.1.2",
-    "gulp-typescript": "^3.2.3",
-    "gulp-watch": "^4.3.11",
-    "jasmine": "^2.8.0",
-    "jasmine-spec-reporter": "^4.2.1",
-    "merge-stream": "^1.0.1",
-    "run-sequence": "^2.2.0",
-    "tslint": "^5.8.0",
-    "typedoc": "^0.9.0",
-    "typescript": "^2.6.1"
   },
   "typescript": {
     "definition": "./index.d.ts"
   },
   "engines": {
     "node": "^4.7 || ^6.9.2 || ^7.3 || ^8.2"
+  },
+  "scripts": {
+    "prepublishOnly": "echo \"ERROR: please build for production before publishing\" && exit 1"
   }
 }
