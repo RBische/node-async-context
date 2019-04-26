@@ -15,6 +15,8 @@ interface HookInstance {
   enable(): void;
   disable(): void;
 }
+let lastTimestampClear = Date.now();
+const DELAY_UNTIL_CLEAR = 10 * 60 * 1000;
 
 const nodeproc: any = process;
 
@@ -118,6 +120,11 @@ export class ContinuationLocalStorage<T> {
             );
           }
           this.idHookMap.delete(id);
+
+          if (Date.now() - DELAY_UNTIL_CLEAR > lastTimestampClear) {
+            lastTimestampClear = Date.now();
+            this.clearOldData(60);
+        }
         }
       },
     };
